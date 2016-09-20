@@ -46,6 +46,7 @@ def is_up(lti=lti):
 
 
 @app.route('/', methods=['GET', 'POST'])
+@lti(request='any', error=error, app=app)
 def redirect_to(lti=lti) :
     return render_template('index.html', lti=lti)
 
@@ -73,8 +74,8 @@ def index_staff(lti=lti):
     return render_template('staff.html', lti=lti)
 
 
-@app.route('/add', methods=['GET'])
-@lti(request='session', error=error, app=app)
+@app.route('/add', methods=['GET', 'POST'])
+@lti(request='any', error=error, app=app)
 def add_form(lti=lti):
     """ initial access page for lti consumer
 
