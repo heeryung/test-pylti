@@ -51,7 +51,7 @@ def redirect_to(lti=lti) :
 
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/lti/', methods=['GET', 'POST'])
-@lti(request='initial', error=error, app=app)
+@lti(request='any', error=error, app=app)
 def index(lti=lti):
     """ initial access page to the lti provider.  This page provides
     authorization for the user.
