@@ -46,13 +46,13 @@ def is_up(lti=lti):
 
 
 @app.route('/', methods=['GET', 'POST'])
-@lti(request='any', error=error, app=app)
+# @lti(request='any', error=error, app=app)
 def redirect_to(lti=lti) :
     return render_template('index.html', lti=lti)
 
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/lti/', methods=['GET', 'POST'])
-@lti(request='any', error=error, app=app)
+@lti(request='initial', error=error, app=app)
 def index(lti=lti):
     """ initial access page to the lti provider.  This page provides
     authorization for the user.
@@ -75,7 +75,7 @@ def index_staff(lti=lti):
 
 
 @app.route('/add', methods=['GET', 'POST'])
-@lti(request='any', error=error, app=app)
+@lti(error=error, app=app)
 def add_form(lti=lti):
     """ initial access page for lti consumer
 
