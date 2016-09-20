@@ -25,7 +25,7 @@ class AddForm(Form):
 
 
 
-def error(exception=None):
+def error(exception):
     """ render error page
 
     :param exception: optional exception
