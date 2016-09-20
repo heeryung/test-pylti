@@ -2,27 +2,25 @@ import os
 from flask import Flask
 from flask import render_template
 from flask.ext.wtf import Form
-from wtforms import IntegerField, BooleanField, StringField, RadioField
+from wtforms import IntegerField, BooleanField, StringField, RadioField, SubmitField
+from wtforms.validators import Required
 from random import randint
 from flask.ext.admin import Admin
 from flask.ext.admin.contrib import sqla
 from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.migrate import Migrate, MigrateCommand
-
-
-
 from pylti.flask import lti
 
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
-migrate = Migrate (app, db)
+# migrate = Migrate (app, db)
 admin = Admin(app, name = "heeryung", template_mode = "bootstrap3")
-admin = add_view(ModelView(addform, db.session))
+# admin = add_view(ModelView(addform, db.session))
 
 class AddForm(Form):
 
-    id_subject = StringField('ID', validators= [Required(0)])
+    id_subject = StringField('ID', validators= [Required()])
     gender = RadioField("Gender",
         choices=[('m', "male"), ('f', "female"), ('o', "other")],
         validators=[Required()], default=None)
@@ -51,6 +49,9 @@ def hello_world(lti=lti):
 
 
 @app.route('/', methods=['GET', 'POST'])
+
+
+
 @app.route('/index', methods=['GET'])
 @app.route('/lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
