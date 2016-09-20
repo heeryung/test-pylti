@@ -49,7 +49,7 @@ def is_up(lti=lti):
 def redirect_to(lti=lti) :
     return render_template('index.html', lti=lti)
 
-@app.route('/index', methods=['GET'])
+@app.route('/index', methods=['GET', 'POST'])
 @app.route('/lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
 def index(lti=lti):
@@ -82,8 +82,8 @@ def add_form(lti=lti):
     :return: index page for lti provider
     """
     form = AddForm()
-    form.p1.data = randint(1, 9)
-    form.p2.data = randint(1, 9)
+    form.id_subject.data = randint(1, 9)
+    form.gender.data = randint(1, 9)
     return render_template('add.html', form=form)
 
 
