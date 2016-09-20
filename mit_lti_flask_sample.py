@@ -6,9 +6,6 @@ from wtforms import IntegerField, BooleanField, StringField, RadioField, SubmitF
 from wtforms.validators import Required
 from random import randint
 from flask.ext.admin import Admin
-from flask.ext.admin.contrib import sqla
-from flask.ext.admin.contrib.sqla import ModelView
-from flask.ext.migrate import Migrate, MigrateCommand
 from pylti.flask import lti
 
 VERSION = '0.0.1'
@@ -38,7 +35,7 @@ def error(exception=None):
 
 
 @app.route('/is_up', methods=['GET'])
-def hello_world(lti=lti):
+def is_up(lti=lti):
     """ Indicate the app is working. Provided for debugging purposes.
 
     :param lti: the `lti` object from `pylti`
@@ -49,7 +46,8 @@ def hello_world(lti=lti):
 
 
 @app.route('/', methods=['GET', 'POST'])
-
+def redirect_to() :
+    return redirect(url_for('.index'))
 
 
 @app.route('/index', methods=['GET'])
