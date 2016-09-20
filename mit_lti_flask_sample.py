@@ -46,9 +46,8 @@ def is_up(lti=lti):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def redirect_to() :
-    return redirect(url_for('.index'))
-
+def redirect_to(lti=lti) :
+    return render_template('index.html', lti=lti)
 
 @app.route('/index', methods=['GET'])
 @app.route('/lti/', methods=['GET', 'POST'])
