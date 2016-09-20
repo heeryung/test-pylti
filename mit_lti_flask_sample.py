@@ -74,8 +74,8 @@ def index_staff(lti=lti):
     return render_template('staff.html', lti=lti)
 
 
-@app.route('/add', methods=['GET', 'POST'])
-@lti(error=error, app=app)
+@app.route('/add', methods  =['GET', 'POST'])
+@lti(request = "session", error=error, app=app)
 def add_form(lti=lti):
     """ initial access page for lti consumer
 
