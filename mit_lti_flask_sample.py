@@ -19,20 +19,6 @@ def any_route(lti):
     return "Landing page"
 
 
-def error(exception):
-    """
-    Error receives one argument - exception
-    exception is a dictionary with the following keys:
-        exception['exception'] = lti_exception
-        exception['kwargs'] = kwargs - keyword arguments passed to the route
-        exception['args'] = args - positional arguments passed to teh route
-
-    :param: exception: `exception` object
-    :return: string "HTML in case of exception"
-    """
-    app_exception.set(exception)
-    return "HTML to return"
-
 
 
 # import os
