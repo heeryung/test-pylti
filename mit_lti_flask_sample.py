@@ -9,7 +9,7 @@ from pylti.flask import lti
 
 VERSION = '0.0.1'
 app = Flask(__name__)
-# app.config.from_object('config')
+app.config.from_object('config')
 # migrate = Migrate (app, db)
 # admin = add_view(ModelView(addform, db.session))
 
@@ -44,7 +44,7 @@ def is_up(lti=lti):
 
 
 @app.route('/', methods=['GET', 'POST'])
-@lti(request='any', error=error, app=app)
+@lti(request='initial', error=error, app=app)
 def redirect_to(lti=lti) :
     return render_template('index.html', lti=lti)
 
