@@ -2,12 +2,22 @@ import os
 from flask import Flask
 from pylti.flask import lti
 
+app.config.from_object('config')
 app = Flask(__name__)
 
 
+
+def error(exception):
+    """ render error page
+
+    :param exception: optional exception
+    :return: the error.html template rendered
+    """
+    return render_template('error.html')
+
 @app.route("/any")
 @lti(error=error, request='any', app=app)
-def any_route(lti):
+def any_route(lti=lti):
     """
     In this example route /any is protected and initial or subsequent calls
     to the URL will succeed. As you can see lti passed one keyword parameter
