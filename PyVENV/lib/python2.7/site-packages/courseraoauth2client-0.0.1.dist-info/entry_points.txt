@@ -1,0 +1,3 @@
+[console_scripts]
+courseraoauth2client = courseraoauth2client.main:main
+
