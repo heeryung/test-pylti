@@ -5,7 +5,6 @@ from flask.ext.wtf import Form
 from wtforms import IntegerField, BooleanField, StringField, RadioField, SubmitField
 from wtforms.validators import Required
 from random import randint
-from flask.ext.admin import Admin
 from pylti.flask import lti
 
 VERSION = '0.0.1'
