@@ -26,7 +26,7 @@ with open(CONSUMER_KEY_PEM_FILE, 'w') as wfile:
 
 PYLTI_CONFIG = {
     "consumers": {
-        "__consumer_key__": {
+        "heeryung_test_consumer_key": {
             "secret": os.environ.get("CONSUMER_KEY_SECRET", "heeryung_test_consumer_secret"),
             "cert": CONSUMER_KEY_PEM_FILE
         }
