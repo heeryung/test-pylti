@@ -3,3 +3,35 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+
+# Byte-compiled / optimized / DLL files
+*.pyo
+*.pyc
+
+# OS-created
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.idea
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Django stuff:
+*.log
+local_settings.py
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# virtualenv
+.venv/
+venv/
+ENV/
+
