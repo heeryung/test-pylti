@@ -1,0 +1,6 @@
+{
+    "dev": {
+        "app_function": "application.application", 
+        "s3_bucket": "meta-lti"
+    }
+}

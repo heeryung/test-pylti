@@ -1,8 +1,8 @@
 import os
 from flask import Flask
 from flask import render_template
-from flask.ext.wtf import Form
-from wtforms import IntegerField, BooleanField, StringField, RadioField, SubmitField
+from flask_wtf import Form
+from wtforms import StringField, RadioField, SubmitField
 from wtforms.validators import Required
 from random import randint
 from pylti.flask import lti
@@ -50,35 +50,17 @@ def is_up(lti=lti):
 
 @app.route('/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
-def redirect_to(lti=lti) :
-    return render_template('index.html', lti=lti)
-
-# @app.route('/lti/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
 # @lti(request='any', error=error, app=app)
-def index(lti=lti):
-    """ initial access page to the lti provider.  This page provides
-    authorization for the user.
-
-    :param lti: the `lti` object from `pylti`
-    :return: index page for lti provider
-    """
+def redirect_to(lti=lti) :
+    # We can match people
     return render_template('index.html', lti=lti)
 
 
-@app.route('/index_staff', methods=['GET', 'POST'])
-@lti(request='session', error=error, role='staff', app=app)
-def index_staff(lti=lti):
-    """ render the contents of the staff.html template
 
-    :param lti: the `lti` object from `pylti`
-    :return: the staff.html template rendered
-    """
-    return render_template('staff.html', lti=lti)
 
 
 @app.route('/add', methods  =['GET', 'POST'])
-# @lti(request = "session", error=error, app=app)
+@lti(request = "session", error=error, app=app)
 def add_form(lti=lti):
     """ initial access page for lti consumer
 
@@ -91,19 +73,6 @@ def add_form(lti=lti):
     return render_template('add.html', form=form)
 
 
-@app.route('/grade', methods=['POST'])
-@lti(request='session', error=error, app=app)
-def grade(lti=lti):
-    """ post grade
-
-    :param lti: the `lti` object from `pylti`
-    :return: grade rendered by grade.html template
-    """
-    form = AddForm()
-    correct = ((form.p1.data + form.p2.data) == form.result.data)
-    form.correct.data = correct
-    lti.post_grade(1 if correct else 0)
-    return render_template('grade.html', form=form)
 
 
 def set_debugging():
