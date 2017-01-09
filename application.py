@@ -48,7 +48,7 @@ def is_up(lti=lti):
     return render_template('up.html', lti=lti)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
 # @lti(request='any', error=error, app=app)
 def redirect_to(lti=lti) :
