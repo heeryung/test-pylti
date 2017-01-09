@@ -11,12 +11,8 @@ VERSION = '0.0.1'
 
 # EB looks for an 'app' callable by default.
 application = Flask(__name__)
-app = application
-app.config.from_object('config')
+application.config.from_object('config')
 
-# # add a rule for the index page.
-# app.add_url_rule('/', 'index', (lambda: header_text +
-#     say_hello() + instructions + footer_text))
 
 class AddForm(Form):
 
@@ -37,7 +33,7 @@ def error(exception):
     return render_template('error.html')
 
 
-@app.route('/is_up')
+@application.route('/is_up')
 def is_up(lti=lti):
     """ Indicate the app is working. Provided for debugging purposes.
 
@@ -48,9 +44,9 @@ def is_up(lti=lti):
     return render_template('up.html', lti=lti)
 
 
-@app.route('/index', methods=['GET', 'POST'])
-@lti(request='initial', error=error, app=app)
-# @lti(request='any', error=error, app=app)
+@application.route('/index', methods=['GET', 'POST'])
+@lti(request='initial', error=error, application=application)
+# @lti(request='any', error=error, application=application)
 def redirect_to(lti=lti) :
     # We can match people
     return render_template('index.html', lti=lti)
@@ -58,8 +54,8 @@ def redirect_to(lti=lti) :
 
 
 
-@app.route('/add')
-@lti(request = "session", error=error, app=app)
+@application.route('/add')
+@lti(request = "session", error=error, application=application)
 def add_form(lti=lti):
     """ initial access page for lti consumer
 
@@ -97,6 +93,6 @@ if __name__ == '__main__':
     For if you want to run the flask development server
     directly
     """
-    port = int(os.environ.get("FLASK_LTI_PORT", 5000))
+    port = int(os.environ.get("PORT", 5000))
     host = os.environ.get("FLASK_LTI_HOST", "localhost")
-    app.run(debug=True, host=host, port=port)
+    application.run(debug=True, host=host, port=port)
