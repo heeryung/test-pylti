@@ -37,7 +37,7 @@ def error(exception):
     return render_template('error.html')
 
 
-@app.route('/is_up', methods=['GET'])
+@app.route('/is_up')
 def is_up(lti=lti):
     """ Indicate the app is working. Provided for debugging purposes.
 
@@ -59,7 +59,7 @@ def redirect_to(lti=lti) :
 
 
 
-@app.route('/add', methods  =['GET', 'POST'])
+@app.route('/add')
 @lti(request = "session", error=error, app=app)
 def add_form(lti=lti):
     """ initial access page for lti consumer
