@@ -58,7 +58,6 @@ def redirect_to(lti=lti) :
 
 
 
-s
 @app.route('/add')
 @lti(request = "session", error=error, app=app)
 def add_form(lti=lti):
