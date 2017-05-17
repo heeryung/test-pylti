@@ -7,9 +7,10 @@ from wtforms.validators import Required
 from random import randint
 from pylti.flask import lti
 
+# https://3v2m94ybq4.execute-api.us-east-1.amazonaws.com/dev/index`
+
 VERSION = '0.0.1'
 
-# EB looks for an 'app' callable by default.
 application = Flask(__name__)
 application.config.from_object('config')
 
@@ -42,6 +43,7 @@ def is_up(lti=lti):
         provider
     """
     return render_template('up.html', lti=lti)
+
 
 
 @application.route('/index', methods=['GET', 'POST'])
